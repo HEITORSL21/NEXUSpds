@@ -49,7 +49,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://i.ibb.co/vCTBbC7w/image.png');
+    background-image: url('https://img.freepik.com/vetores-premium/espaco-moderno-holografico-roxo-e-azul-escuro-cosmos-fundo_659214-96.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -3308,4 +3308,5 @@ body.cart-open {
     .summary-row.total {
         font-size: 1rem;
     }
+
 }
