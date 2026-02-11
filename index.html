@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PODS PREMIUM 3D | Experiência Imersiva com 10% OFF</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/carousel-3d.css">
+    <link rel="stylesheet" href="styles/particles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Filtro SVG para blur -->
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <defs>
+            <filter id="blur">
+                <feGaussianBlur stdDeviation="10"></feGaussianBlur>
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Sistema de Fundo com Fumaça Dinâmica -->
+    <div class="background-container">
+        <div class="main-bg"></div>
+        <div class="bg-overlay"></div>
+        <div class="particles-container" id="particles"></div>
+    </div>
+
+    <!-- Container Principal -->
+    <div class="main-container">
+        <!-- Header -->
+        <header class="glass-header">
+            <div class="logo">
+                <h1 class="neon-logo">
+                    <span class="logo-glow">PODS</span>
+                    <span class="logo-gradient">PREMIUM 3D</span>
+                </h1>
+                <p class="tagline pulse">Experiência Imersiva • Promoção de 10%</p>
+            </div>
+            <div class="header-actions">
+                <div class="cart-icon" id="cartToggle">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2 class="hero-title">
+                        <span class="hero-glow">REFRESCÂNCIA TOTAL</span>
+                        <span class="hero-gradient">SABORES ÚNICOS</span>
+                    </h2>
+                    <p class="hero-subtitle">Descubra a nova geração de pods com design revolucionário e performance incomparável.</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">4.9</span>
+                            <span class="stat-label">Avaliação</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">Modelos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24h</span>
+                            <span class="stat-label">Promoção</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-orbit">
+                    <div class="orbit-ring"></div>
+                    <div class="orbit-dots"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carrossel 3D -->
+        <section class="carousel-3d-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-glow">COLECÇÃO</span>
+                    <span class="title-gradient">3D INTERATIVA</span>
+                </h2>
+                <p class="section-subtitle">Gire, explore e sinta a experiência única de cada modelo em realidade aumentada.</p>
+                <div class="active-product-panel" id="activeProductPanel"></div>
+            </div>
+
+            <div class="carousel-3d-container">
+                <!-- Carrossel 3D -->
+                <div class="carousel-3d" id="carousel3D">
+                    <!-- Os produtos serão renderizados via JavaScript -->
+                </div>
+                
+                <!-- Controles -->
+                <div class="carousel-controls">
+                    <button class="control-btn prev-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    
+                    <button class="control-btn mode-btn" id="autoRotateBtn">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>ROTACIONAR</span>
+                    </button>
+                    
+                    <button class="control-btn next-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Indicadores -->
+                <div class="carousel-indicators" id="indicators"></div>
+            </div>
+
+            <!-- Linha de LED animada -->
+            <div class="led-line-container">
+                <div class="led-line">
+                    <div class="led-segment" style="--delay: 0"></div>
+                    <div class="led-segment" style="--delay: 0.1"></div>
+                    <div class="led-segment" style="--delay: 0.2"></div>
+                    <div class="led-segment" style="--delay: 0.3"></div>
+                    <div class="led-segment" style="--delay: 0.4"></div>
+                    <div class="led-segment" style="--delay: 0.5"></div>
+                    <div class="led-segment" style="--delay: 0.6"></div>
+                    <div class="led-segment" style="--delay: 0.7"></div>
+                    <div class="led-segment" style="--delay: 0.8"></div>
+                    <div class="led-segment" style="--delay: 0.9"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Catálogo Grid -->
+        <section class="catalog-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-glow">CATÁLOGO</span>
+                    <span class="title-gradient">COMPLETO</span>
+                </h2>
+                <p class="section-subtitle">Todos os modelos disponíveis em nossa coleção premium.</p>
+            </div>
+            
+            <div class="catalog-grid" id="catalogGrid">
+                <!-- Os produtos serão renderizados via JavaScript -->
+            </div>
+        </section>
+
+        <!-- Seção de Tecnologia -->
+        <section class="tech-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-gradient">TECNOLOGIA</span>
+                    <span class="title-glow">AVANÇADA</span>
+                </h2>
+                <p class="section-subtitle">Inovação em cada detalhe para uma experiência premium.</p>
+            </div>
+            
+            <div class="tech-grid">
+                <div class="tech-card glass-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3 class="tech-title">Chip Inteligente</h3>
+                    <p class="tech-description">Controle de temperatura e proteção contra sobrecarga.</p>
+                </div>
+                
+                <div class="tech-card glass-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3 class="tech-title">Performance Máxima</h3>
+                    <p class="tech-description">Vaporização instantânea com sabor intenso.</p>
+                </div>
+                
+                <div class="tech-card glass-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="tech-title">Segurança Total</h3>
+                    <p class="tech-description">Proteção multicamadas para uso seguro.</p>
+                </div>
+                
+                <div class="tech-card glass-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3 class="tech-title">Durabilidade</h3>
+                    <p class="tech-description">Materiais premium para longa vida útil.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Depoimentos -->
+
+        <!-- Seção de Promoção -->
+        <section class="promo-section">
+            <div class="promo-card glass-card">
+                <div class="promo-header">
+                    <h3 class="promo-title">
+                        <i class="fas fa-bolt"></i>
+                        PROMOÇÃO RELÂMPAGO
+                    </h3>
+                    <div class="promo-badge pulse">-10%</div>
+                </div>
+                
+                <div class="promo-content">
+                    <p>Todos os produtos já estão com <strong>10% de desconto</strong> aplicado. Aproveite agora!</p>
+                    <ul class="promo-list">
+                        <li><i class="fas fa-check-circle"></i> Preços especiais por tempo limitado</li>
+                        <li><i class="fas fa-check-circle"></i> Frete rápido para todo Brasil</li>
+                        <li><i class="fas fa-check-circle"></i> Garantia de 30 dias</li>
+                    </ul>
+                    
+                    <div class="promo-timer">
+                        <div class="timer-label">
+                            <i class="fas fa-clock"></i>
+                            Promoção termina em:
+                        </div>
+                        <div class="timer-display" id="countdown">
+                            <span class="timer-unit">23</span>
+                            <span class="timer-separator">:</span>
+                            <span class="timer-unit">59</span>
+                            <span class="timer-separator">:</span>
+                            <span class="timer-unit">59</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-glow">PODS</span>
+                    <span class="logo-gradient">PREMIUM 3D</span>
+                </div>
+                <p class="footer-tagline">Tecnologia e design em harmonia para uma experiência única</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <div class="footer-disclaimer">
+                    <p>Este site é um modelo demonstrativo criado por <strong>HEITOR</strong>.</p>
+                    <p>Todas as imagens e produtos são fictícios, criados para fins de demonstração.</p>
+                </div>
+                <p class="footer-copyright">© 2023 PODS PREMIUM 3D. Todos os direitos reservados. | Site desenvolvido por HEITOR</p>
+            </div>
+        </footer>
+    </div>
+
+<!-- Modal do Carrinho - Com formulário de dados -->
+<!-- Modal do Carrinho - CORRIGIDO -->
+<!-- MODAL DO CARRINHO – VERSÃO 100% FUNCIONAL -->
+<div class="modal-overlay" id="cartOverlay"></div>
+<div class="cart-modal" id="cartModal">
+    <!-- HEADER -->
+    <div class="cart-header">
+        <h3><i class="fas fa-shopping-cart"></i> Seu Carrinho</h3>
+        <button class="close-cart" id="closeCart">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- ÁREA DE CONTEÚDO COM SCROLL -->
+    <div class="cart-main-container">
+        <div class="cart-scroll-area" id="cartItems">
+            <!-- Itens serão inseridos aqui via JS -->
+        </div>
+
+        <!-- ========== FORMULÁRIO DE DADOS ========== -->
+        <!-- Inicialmente visível para teste (display: block) -->
+<div class="customer-form-container" id="customerFormContainer" style="display: none;">
+    <div class="customer-form-header">
+        <i class="fas fa-user-circle"></i>
+        <h4>📋 Dados para entrega</h4>
+    </div>
+    <div class="customer-form">
+        <div class="form-group">
+            <label for="customerName">Nome completo:</label>
+            <input type="text" id="customerName" class="form-input" placeholder="Digite seu nome completo" required>
+        </div>
+        <div class="form-group">
+            <label for="customerWhatsApp">WhatsApp:</label>
+            <input type="tel" id="customerWhatsApp" class="form-input phone-input" placeholder="(89) 99999-9999" required>
+        </div>
+        <div class="form-group">
+            <label for="deliveryAddress"><i class="fas fa-map-marker-alt"></i> Endereço para entrega:</label>
+            <textarea id="deliveryAddress" class="form-textarea" placeholder="Rua, número, bairro, complemento..." required></textarea>
+        </div>
+    </div>
+</div>
+        <!-- ========== FIM DO FORMULÁRIO ========== -->
+    </div>
+
+    <!-- RODAPÉ FIXO – RESUMO E BOTÃO -->
+    <div class="cart-footer">
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="cartSubtotal">R$ 0,00</span>
+            </div>
+            <div class="summary-row discount">
+                <span>Desconto (10%):</span>
+                <span id="cartDiscount">- R$ 0,00</span>
+            </div>
+            <div class="summary-row total">
+                <span>TOTAL:</span>
+                <span id="cartTotal">R$ 0,00</span>
+            </div>
+        </div>
+
+        <button class="checkout-btn" id="checkoutBtn">
+            <i class="fab fa-whatsapp"></i>
+            <div class="btn-content">
+                <span class="btn-main">ENVIAR PEDIDO VIA WHATSAPP</span>
+                <span class="btn-sub">(89) 99438-6200</span>
+            </div>
+        </button>
+        
+        <div class="payment-info">
+            <i class="fas fa-lock"></i> Dados seguros – nunca compartilhamos suas informações
+        </div>
+    </div>
+</div>
+
+    <!-- Scripts -->
+    <script src="js/effects.js"></script>
+    <script src="js/carousel-3d.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/catalog.js"></script>
+</body>
+</html>
