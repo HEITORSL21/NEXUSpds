@@ -3308,5 +3308,11 @@ body.cart-open {
     .summary-row.total {
         font-size: 1rem;
     }
+}
 
+#customerName {
+    text-transform: none !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    letter-spacing: normal !important;
 }
