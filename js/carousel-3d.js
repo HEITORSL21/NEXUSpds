@@ -429,22 +429,33 @@ class Carousel3D {
         });
         
         // Eventos de teclado
-        document.addEventListener('keydown', (e) => {
-            switch (e.key) {
-                case 'ArrowLeft':
-                    this.prevProduct();
-                    this.stopAutoRotation();
-                    break;
-                case 'ArrowRight':
-                    this.nextProduct();
-                    this.stopAutoRotation();
-                    break;
-                case ' ':
-                    e.preventDefault();
-                    this.toggleAutoRotation();
-                    break;
+// Eventos de teclado - VERSÃO QUE RESPEITA CAMPOS DE TEXTO
+document.addEventListener('keydown', (e) => {
+    const isInput = e.target.tagName === 'INPUT' || 
+                    e.target.tagName === 'TEXTAREA' || 
+                    e.target.isContentEditable;
+
+    switch (e.key) {
+        case 'ArrowLeft':
+            if (!isInput) {
+                this.prevProduct();
+                this.stopAutoRotation();
             }
-        });
+            break;
+        case 'ArrowRight':
+            if (!isInput) {
+                this.nextProduct();
+                this.stopAutoRotation();
+            }
+            break;
+        case ' ':
+            if (!isInput) {
+                e.preventDefault();
+                this.toggleAutoRotation();
+            }
+            break;
+    }
+});
         
         // Suporte para gestos touch
         let touchStartX = 0;
