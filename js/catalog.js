@@ -30,7 +30,7 @@ class ProductCatalog {
             
             productElement.innerHTML = `
                 <div class="product-image-wrapper">
-                    <img src="${product.image}" alt="${product.name}" class="catalog-product-image">
+                    <img src="${product.image}" alt="${product.name}" class="catalog-product-image" loading="lazy" decoding="async" width="400" height="400">
                 </div>
                 
                 <div class="product-info-content">
