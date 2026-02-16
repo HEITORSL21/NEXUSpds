@@ -182,7 +182,7 @@ class Carousel3D {
                     <div class="product-front">
                         <div class="product-glow" style="background: ${product.gradient}"></div>
                         <div class="product-image-container">
-                            <img src="${product.image}" alt="${product.name}" class="product-image" style="color: ${product.colorGlow}">
+                            <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy" decoding="async" width="400" height="400" style="color: ${product.colorGlow}">
                         </div>
                         ${product.badge ? `<div class="product-badge ${product.badge}">${product.badge.toUpperCase()}</div>` : ''}
                         <div class="product-info">
@@ -321,7 +321,7 @@ class Carousel3D {
             </div>
             <div class="panel-content">
                 <div class="panel-image">
-                    <img src="${product.image}" alt="${product.name}" style="color: ${product.colorGlow}">
+                    <img src="${product.image}" alt="${product.name}" width="400" height="400" style="color: ${product.colorGlow}">
                 </div>
                 <div class="panel-details">
                     <p class="panel-description">${product.description}</p>
