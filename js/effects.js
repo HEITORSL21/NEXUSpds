@@ -4,7 +4,9 @@ class ParticleEffects {
     constructor() {
         this.particlesContainer = document.getElementById('particles');
         this.particles = [];
-        this.maxParticles = 50;
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+        this.maxParticles = (prefersReducedMotion || isMobile) ? 20 : 50;
         this.colors = [
             '#8a2be2', // Neon Purple
             '#00bfff', // Neon Blue
@@ -17,13 +19,29 @@ class ParticleEffects {
     }
     
     init() {
+        if (!this.particlesContainer) {
+            this.particlesContainer = document.createElement('div');
+            this.particlesContainer.id = 'particles';
+            this.particlesContainer.className = 'particles-container';
+            document.body.insertBefore(this.particlesContainer, document.body.firstChild);
+        }
+
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            return;
+        }
+
         this.createParticles();
         this.animateParticles();
         
         // Recriar partículas ao redimensionar
         window.addEventListener('resize', () => {
+            const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReducedMotion) return;
             this.particles = [];
-            this.particlesContainer.innerHTML = '';
+            if (this.particlesContainer) {
+                this.particlesContainer.innerHTML = '';
+            }
             this.createParticles();
         });
     }
@@ -552,19 +570,20 @@ class TypewriterEffect {
 
 // Inicializar efeitos quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', () => {
-    // Inicializar partículas
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+
+    // Inicializar partículas (sempre que possível, mas já respeitando reduced motion internamente)
     const particles = new ParticleEffects();
-    
-    // Inicializar iluminação dinâmica
-    const lighting = new DynamicLighting();
-    
-    // Inicializar rastreador de mouse
-    const mouseTracker = new MouseTracker();
-    
-    // Expor para uso global
     window.particleEffects = particles;
-    window.dynamicLighting = lighting;
-    window.mouseTracker = mouseTracker;
+
+    // Efeitos mais pesados só em desktop e sem reduced motion
+    if (!prefersReducedMotion && !isMobile) {
+        const lighting = new DynamicLighting();
+        const mouseTracker = new MouseTracker();
+        window.dynamicLighting = lighting;
+        window.mouseTracker = mouseTracker;
+    }
     window.ProductSmokeEffect = ProductSmokeEffect;
     
     // Efeito de digitação para elementos com classe 'typewriter'
