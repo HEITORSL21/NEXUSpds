@@ -121,6 +121,12 @@ class ParticleEffects {
     }
     
     createExplosion(x, y, color = '#8a2be2', count = 15) {
+        // Em dispositivos mobile evitamos completamente o efeito de explosão
+        const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+        if (isMobile) {
+            return;
+        }
+
         for (let i = 0; i < count; i++) {
             const explosionParticle = document.createElement('div');
             explosionParticle.className = 'explosion-particle';
