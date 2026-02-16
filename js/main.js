@@ -272,12 +272,12 @@ class MainApp {
 // Inicializar aplicação quando o DOM estiver carregado
 // Substituir o código de inicialização existente
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Inicializar efeitos primeiro
-    const particles = new ParticleEffects();
+    // 1. Inicializar efeitos primeiro (reutilizando instâncias existentes quando houver)
+    const particles = window.particleEffects || new ParticleEffects();
     window.particleEffects = particles;
     
-    // 2. Inicializar carrinho
-    const shoppingCart = new ShoppingCart();
+    // 2. Inicializar carrinho (evitar múltiplas instâncias)
+    const shoppingCart = window.shoppingCart || new ShoppingCart();
     window.shoppingCart = shoppingCart;
     
     // 3. Verificar qual sistema usar
