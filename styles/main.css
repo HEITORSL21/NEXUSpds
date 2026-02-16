@@ -29,8 +29,18 @@ body {
     background-color: var(--cyber-dark);
     color: var(--text-primary);
     min-height: 100vh;
+    min-height: 100dvh;
     overflow-x: hidden;
     position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 /* Sistema de Fundo */
@@ -53,6 +63,13 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+}
+
+@media (max-width: 768px) {
+    .main-bg {
+        background-attachment: scroll;
+        background-position: center top;
+    }
 }
 
 .bg-overlay {
@@ -1023,6 +1040,7 @@ body {
     width: 100%;
     max-width: 450px;
     height: 100vh;
+    height: 100dvh;
     background: linear-gradient(
         135deg,
         rgba(20, 20, 20, 0.95) 0%,
@@ -2211,6 +2229,7 @@ body {
     width: 100%;
     max-width: 450px;
     height: 100vh;
+    height: 100dvh;
     background: linear-gradient(
         135deg,
         rgba(20, 20, 20, 0.98) 0%,
@@ -2580,7 +2599,6 @@ body {
 /* PREVENIR SCROLL NO BODY QUANDO CARRINHO ABERTO */
 body.cart-open {
     overflow: hidden;
-    height: 100vh;
 }
 
 /* ==================== */
